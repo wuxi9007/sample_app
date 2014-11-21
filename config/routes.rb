@@ -1,12 +1,15 @@
-SampleApp::Application.routes.draw do
-  
 
-  resources :users
- root  'static_pages#home'
- match '/signup',  to: 'users#new',            via: 'get'
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
-  
+Rails.application.routes.draw do
+	resources :users
+	resources :sessions, only: [:new, :create, :destroy]
+	root                   'static_pages#home'
+	get 'help'    =>       'static_pages#help'
+	get 'about'   =>       'static_pages#about'
+	get 'contact' =>       'static_pages#contact'
+	get 'signup'  =>       'users#new'
+	get 'signin'   =>       'sessions#new'
+	get 'signout'  =>      'sessions#destroy'
+	post 'signin'  =>       'sessions#create'
+	delete 'signout' =>     'sessions#destroy'
 
 end
