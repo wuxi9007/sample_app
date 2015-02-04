@@ -11,5 +11,4 @@ Rails.application.routes.draw do
 	get 'signout'  =>      'sessions#destroy'
 	post 'signin'  =>       'sessions#create'
 	delete 'signout' =>     'sessions#destroy'
-
 end
